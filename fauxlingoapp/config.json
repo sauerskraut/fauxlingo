@@ -1,0 +1,18 @@
+{
+    "initial-prompt": "Please take this list of words in Spanish, and form a sentence using them. Return ONLY the sentence - do NOT return anything else, and be creative in what the sentence says, but limit it to only about 10 words. {spanishwords}'",
+    "secondary-prompt": "This is user input. {userinput} please check if it's a correct translation of this sentence in Spanish {spanishsentence}. If it's not, please provide the correct translation.",
+    "anki": {
+        "Spanish": {
+            "file_path": "./spanishduo.csv",
+            "word_column_header": "Spanish",
+            "translation_column_header": "Translation"
+        }
+    },
+    "elevenlabs": {
+        "voice": ["Alice", "Bill", "Emily"],
+        "model": "eleven_multilingual_v2"
+    },
+    "activities": ["Translate this sentence:"],
+    "noresponse": ["Por favor, ingresa el texto"],
+    "exit": ["exit", "close", "finish", "done", "quit", "stop"]
+}

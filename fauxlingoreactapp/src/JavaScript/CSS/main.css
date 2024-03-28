@@ -1,0 +1,19 @@
+.App {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(84, 183, 202);
+  }
+
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+  
+  .App-header {
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
