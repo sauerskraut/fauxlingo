@@ -48,7 +48,7 @@ export function ChooseChapter() {
                         ))}
                     </Select>
                 </FormControl>
-                {selectedChapter && <h2>You selected Chapter {selectedChapter.chapterNumber}: {selectedChapter.chapterName}</h2>}
+                {selectedChapter && <h3>You selected Chapter {selectedChapter.chapterNumber}: {selectedChapter.chapterName}</h3>}
             </div>
         </ChapterContext.Provider>
     )

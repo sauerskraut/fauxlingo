@@ -7,4 +7,5 @@ urlpatterns = [
     path('read_apkg/', views.read_apkg, name='read_apkg'),
     path('api/chapter_data/', views.ChapterDataView.as_view()),
     path('api/chapter_list/', views.ChapterListView.as_view()),
+    path('api/sentence/', views.SentenceView.as_view()),
 ]

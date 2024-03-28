@@ -19,7 +19,7 @@ class OpenAIInterface:
 
         # Create chat completions
         response = self.openai.chat.completions.create(
-            model="gpt-4-turbo",
+            model="gpt-4-turbo-preview",
             messages=self.messages,
             temperature=0.6,
             max_tokens=4000

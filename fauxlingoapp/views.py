@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
 from .utils import *
+from .interfaces import openaiinterface
 import csv
 
 def index(request):
@@ -10,7 +11,7 @@ def index(request):
 def read_apkg(request):
     # Path to your .apkg file
     data = []
-    with open('spanishduo.csv', newline='', encoding='utf-8-sig') as csvfile:
+    with open('spanishduo12.csv', newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             data.append(row)
@@ -22,6 +23,15 @@ def get_chapter_list():
     chapter_list = get_list_of_chapters()
     return JsonResponse(chapter_list, safe=False)
 
+def get_sentence():
+    word_string = ankiinterface.get_words_as_string(word_dictionary).strip()
+    input_string = config_dict["initial-prompt"].strip().format(spanishwords=word_string)
+    gpt_response = OAI.get_text_response_only(input_string)
+    return gpt_response
+
+def get_sentence_view():
+    return JsonResponse(get_sentence(), safe=False)
+
 class ChapterDataView(View):
     def get(self, request, *args, **kwargs):
         chapter_list = request.GET.getlist('chapters')
@@ -32,3 +42,7 @@ class ChapterListView(View):
     def get(self, request, *args, **kwargs):
         chapter_list = get_list_of_chapters()
         return JsonResponse(chapter_list, safe=False)
+    
+class SentenceView(View):
+    def get(self, request, *args, **kwargs):
+        return get_sentence_view()

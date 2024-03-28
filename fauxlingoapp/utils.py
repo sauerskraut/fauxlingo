@@ -27,6 +27,9 @@ def load_data(language):
 
     return word_dictionary
 
+word_dictionary = load_data("Spanish")
+OAI = openaiinterface.OpenAIInterface()
+
 def filter_data_by_chapter(chapter_list):
     data = load_data("Spanish")
     filtered_data = []

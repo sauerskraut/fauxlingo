@@ -8,35 +8,32 @@ function HomePage() {
     const [showTranslateWord, setShowTranslateWord] = useState(false);
     const [showTranslateSentence, setShowTranslateSentence] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
+    const [showChapter, setShowChapter] = useState(false);
     const [showChapterSelect, setShowChapterSelect] = useState(false);  
     const selectedChapter = useContext(ChapterContext);
 
     return (
-        <div>
+        <div class="App">
             <div class="container">
-                {darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Light Mode</Button>}
-                {!darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Dark Mode</Button>}
+                {/* {darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Light Mode</Button>}
+                {!darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Dark Mode</Button>}*/ }
 
                 <Button variant="outlined" onClick={() => setShowChapterSelect(!showChapterSelect)}>Choose Chapter</Button>
+            
+                {showChapter && <div><h3>Chapter {selectedChapter?.chapterNumber}: {selectedChapter?.chapterName}</h3> : ""</div>}
             </div>
 
-            <div>
-                <h1>Chapter {selectedChapter?.chapterNumber}: {selectedChapter?.chapterName}</h1>
+            <div className="options">
+                <div className="item">
+                    <Button variant="outlined" onClick={() => setShowTranslateWord(!showTranslateWord)}>Translate Words</Button>
+                </div>
+                <div className="item">
+                    <Button variant="outlined" onClick={() => setShowTranslateSentence(!showTranslateSentence)}>Translate Sentence</Button>
+                </div>
             </div>
-
-            <div className="container">
-                {showChapterSelect ? <ChooseChapter /> : (
-                <>
-                    <Button variant="contained" onClick={() => setShowTranslateWord(!showTranslateWord)}>Translate Words</Button>
-                    <Button variant="contained" onClick={() => setShowTranslateSentence(!showTranslateSentence)}>Translate Sentence</Button>
-                </>
-            )}
-
-            </div>
-
-
-            <div className="app">
-                {showTranslateWord && <TranslateWords/>}
+            <div className="main">
+                {showChapterSelect && <ChooseChapter/>}
+                {/*showTranslateWord && <TranslateWords/>*/}
                 {showTranslateSentence && <TranslateSentence/>}
             </div>
         </div>

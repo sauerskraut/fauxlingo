@@ -3,7 +3,7 @@
     "secondary-prompt": "This is user input. {userinput} please check if it's a correct translation of this sentence in Spanish {spanishsentence}. If it's not, please provide the correct translation.",
     "anki": {
         "Spanish": {
-            "file_path": "./spanishduo.csv",
+            "file_path": "./spanishduo12.csv",
             "word_column_header": "Spanish",
             "translation_column_header": "Translation"
         }
