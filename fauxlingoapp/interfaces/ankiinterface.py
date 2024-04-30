@@ -1,4 +1,5 @@
 import csv
+import random
 
 def get_words(file_path, word_column_header, translation_column_header, chapter_number_column="Chapter Number", chapter_name_column="Chapter Name"):
     word_dictionary = {}
@@ -41,3 +42,17 @@ def get_words_as_string_specify_number(word_dict, chapter_number):
     """
     words_as_string = ', '.join([word for word in word_dict.keys() if word_dict[word]['chapter number'] == chapter_number])
     return words_as_string
+
+def get_random_word(word_dict):
+    """
+    Returns a random word from the dictionary, along with its translation.
+    """
+    random_word = random.choice(list(word_dict.keys()))
+    return random_word
+
+def get_random_word_specify_number(word_dict, chapter_number):
+    """
+    Returns a random word from the dictionary.
+    """
+    random_word = random.choice([word for word in word_dict.keys() if word_dict[word]['chapter number'] == chapter_number])
+    return random_word

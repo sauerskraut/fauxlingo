@@ -1,5 +1,5 @@
 {
-    "initial-prompt": "Please take this list of words in Spanish, and form a sentence using them. Return ONLY the sentence - do NOT return anything else, and be creative in what the sentence says, but limit it to only about 10 words. {spanishwords}'",
+    "sentence-prompt": "Please take this list of words in Spanish, and form a sentence using them. Return ONLY the sentence - do NOT return anything else, and be creative in what the sentence says, but limit it to only about 10 words. Return the sentence in Spanish formatted as <esp>Spanish sentence</esp> and then the translation in English as <eng>English sentence</eng>. {spanishwords}'",
     "secondary-prompt": "This is user input. {userinput} please check if it's a correct translation of this sentence in Spanish {spanishsentence}. If it's not, please provide the correct translation.",
     "anki": {
         "Spanish": {

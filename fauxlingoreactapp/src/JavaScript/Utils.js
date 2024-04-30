@@ -26,7 +26,6 @@ export function ChooseChapter() {
         setSelectedChapter({ chapterNumber, chapterName });
     }
 
-
     // Log the selectedChapter state to the console whenever it changes
     useEffect(() => {
         console.log(selectedChapter);

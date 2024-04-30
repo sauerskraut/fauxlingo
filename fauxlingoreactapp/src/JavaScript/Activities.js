@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export function TranslateWords(props) {
+export function MatchWords(props) {
     // we need to take the list of words and shuffle them
     // then we need to display them in a grid
 
@@ -28,4 +28,23 @@ export function TranslateSentence(props) {
             <input type="text" /> <button>Submit</button>
         </div>
     );
+}
+
+export function TranslateWord(props) {
+    const [word, setWord] = useState('');
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/api/word/')
+            .then(response => response.json())
+            .then(data => setWord(data));
+    }, []);
+    
+    return (
+        <div>
+            <p>Enter the translation for the following word:</p>
+            <p>{word}</p>
+            <p>Your response:</p>
+            <input type="text" /> <button>Submit</button>
+        </div>
+    )
 }

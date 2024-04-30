@@ -25,12 +25,19 @@ def get_chapter_list():
 
 def get_sentence():
     word_string = ankiinterface.get_words_as_string(word_dictionary).strip()
-    input_string = config_dict["initial-prompt"].strip().format(spanishwords=word_string)
+    input_string = config_dict["sentence-prompt"].strip().format(spanishwords=word_string)
     gpt_response = OAI.get_text_response_only(input_string)
     return gpt_response
 
+def get_word():
+    word = ankiinterface.get_random_word(word_dictionary).strip()
+    return word
+
 def get_sentence_view():
     return JsonResponse(get_sentence(), safe=False)
+
+def get_word_view():
+    return JsonResponse(get_word(), safe=False)
 
 class ChapterDataView(View):
     def get(self, request, *args, **kwargs):
@@ -46,3 +53,7 @@ class ChapterListView(View):
 class SentenceView(View):
     def get(self, request, *args, **kwargs):
         return get_sentence_view()
+    
+class WordView(View):
+    def get(self, request, *args, **kwargs):
+        return get_word_view()

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TranslateWords, TranslateSentence } from './Activities';
+import { TranslateWord, TranslateSentence } from './Activities';
 import { ChooseChapter, useChapter, ChapterContext } from './Utils';
 import { Button } from '@material-ui/core';
 import './CSS/main.css';
@@ -18,22 +18,22 @@ function HomePage() {
                 {/* {darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Light Mode</Button>}
                 {!darkMode && <Button variant="outlined" onClick={() => setDarkMode(!darkMode)}>Dark Mode</Button>}*/ }
 
-                <Button variant="outlined" onClick={() => setShowChapterSelect(!showChapterSelect)}>Choose Chapter</Button>
+                <Button variant="contained" onClick={() => setShowChapterSelect(!showChapterSelect)}>Choose Chapter</Button>
             
                 {showChapter && <div><h3>Chapter {selectedChapter?.chapterNumber}: {selectedChapter?.chapterName}</h3> : ""</div>}
             </div>
 
             <div className="options">
                 <div className="item">
-                    <Button variant="outlined" onClick={() => setShowTranslateWord(!showTranslateWord)}>Translate Words</Button>
+                    <Button variant="contained" onClick={() => setShowTranslateWord(!showTranslateWord)}>Translate Words</Button>
                 </div>
                 <div className="item">
-                    <Button variant="outlined" onClick={() => setShowTranslateSentence(!showTranslateSentence)}>Translate Sentence</Button>
+                    <Button variant="contained" onClick={() => setShowTranslateSentence(!showTranslateSentence)}>Translate Sentence</Button>
                 </div>
             </div>
             <div className="main">
                 {showChapterSelect && <ChooseChapter/>}
-                {/*showTranslateWord && <TranslateWords/>*/}
+                {showTranslateWord && <TranslateWord/>}
                 {showTranslateSentence && <TranslateSentence/>}
             </div>
         </div>
