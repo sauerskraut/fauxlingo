@@ -45,14 +45,38 @@ def get_words_as_string_specify_number(word_dict, chapter_number):
 
 def get_random_word(word_dict):
     """
-    Returns a random word from the dictionary, along with its translation.
+    Returns a random word from the dictionary, along with its translation,
+    in the format '<esp>Spanish word</esp><eng>English word</eng>'.
     """
     random_word = random.choice(list(word_dict.keys()))
-    return random_word
+    translation = word_dict[random_word]['translation']
+    return f'<esp>{random_word}</esp><eng>{translation}</eng>'
 
 def get_random_word_specify_number(word_dict, chapter_number):
     """
-    Returns a random word from the dictionary.
+    Returns a random word from the dictionary based on the specified chapter number,
+    along with its translation, in the format '<esp>Spanish word</esp><eng>English translation</eng>'.
     """
-    random_word = random.choice([word for word in word_dict.keys() if word_dict[word]['chapter number'] == chapter_number])
-    return random_word
+    filtered_words = [word for word in word_dict.keys() if word_dict[word]['chapter number'] == chapter_number]
+    random_word = random.choice(filtered_words)
+    translation = word_dict[random_word]['translation']
+    return f'<esp>{random_word}</esp><eng>{translation}</eng>'
+
+def get_list_of_words(word_dict):
+    """
+    Returns a list of words and their translations as a hash table from the dictionary.
+    """
+    word_list = []
+    counter = 0
+    while counter < 10:
+        # we need to make sure the word isn't already in the dictionary
+        random_word = random.choice(list(word_dict.keys()))
+        if random_word in word_list:
+            continue
+        translation = word_dict[random_word]['translation']
+        word_list.append({
+            'word': random_word,
+            'translation': translation
+        })
+        counter += 1
+    return word_list

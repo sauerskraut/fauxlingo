@@ -24,6 +24,7 @@ def get_chapter_list():
     return JsonResponse(chapter_list, safe=False)
 
 def get_sentence():
+    print('get_sentence')
     word_string = ankiinterface.get_words_as_string(word_dictionary).strip()
     input_string = config_dict["sentence-prompt"].strip().format(spanishwords=word_string)
     gpt_response = OAI.get_text_response_only(input_string)
@@ -32,6 +33,9 @@ def get_sentence():
 def get_word():
     word = ankiinterface.get_random_word(word_dictionary).strip()
     return word
+
+def get_list_of_words():
+    return ankiinterface.get_list_of_words(word_dictionary)
 
 def get_sentence_view():
     return JsonResponse(get_sentence(), safe=False)
@@ -57,3 +61,7 @@ class SentenceView(View):
 class WordView(View):
     def get(self, request, *args, **kwargs):
         return get_word_view()
+    
+class WordListView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse(get_list_of_words(), safe=False)

@@ -14,6 +14,7 @@ class OpenAIInterface:
         self.messages = []
     
     def get_text_response_only(self, user_text):
+        print('get_test_response_only')
         # Append user message to the list of messages
         self.messages.append({"role": "user", "content": user_text})
 
