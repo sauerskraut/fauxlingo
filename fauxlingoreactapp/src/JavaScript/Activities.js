@@ -12,7 +12,6 @@ export function TranslateSentence(props) {
             .then(data => {
                 const espMatch = data.match(/<esp>(.*?)<\/esp>/);
                 const engMatch = data.match(/<eng>(.*?)<\/eng>/);
-
                 console.log(espMatch);
                 console.log(engMatch);
 
@@ -24,6 +23,7 @@ export function TranslateSentence(props) {
                     setTargetLanguage(randomLanguage);
                     setSentence(randomLanguage === 'esp' ? espSentence : engSentence);
                     setTranslatedSentence(randomLanguage === 'esp' ? engSentence : espSentence);
+                
                 } else {
                     console.error('Invalid API response format');
                 }
@@ -78,8 +78,8 @@ export function TranslateWord(props) {
 
                 const randomLanguage = Math.random() < 0.5 ? 'esp' : 'eng';
                 setTargetLanguage(randomLanguage);
-                setWord(randomLanguage === 'esp' ? spanishWord : englishWord);
-                setTranslatedWord(randomLanguage === 'esp' ? englishWord : spanishWord);
+                setWord(randomLanguage === 'esp' ? englishWord : spanishWord);
+                setTranslatedWord(randomLanguage === 'esp' ? spanishWord : englishWord);
             })
             .catch(error => {
                 console.error('Error fetching word:', error);
@@ -145,10 +145,18 @@ export function MatchingWords(props) {
         fetch('http://127.0.0.1:8000/api/wordlist/')
             .then(response => response.json())
             .then(data => {
-                const pairs = data.map(item => ({ word: item.word, translation: item.translation }));
-                setWordPairs(pairs);
-                setShuffledWords(shuffleArray(pairs.map(pair => pair.word)));
-                setShuffledTranslations(shuffleArray(pairs.map(pair => pair.translation)));
+                const uniquePairs = data.reduce((acc, item) => {
+                    const pair = { word: item.word, translation: item.translation };
+                    const isDuplicate = acc.some(p => p.word === pair.word && p.translation === pair.translation);
+                    if (!isDuplicate) {
+                        acc.push(pair);
+                    }
+                    return acc;
+                }, []);
+    
+                setWordPairs(uniquePairs);
+                setShuffledWords(shuffleArray(uniquePairs.map(pair => pair.word)));
+                setShuffledTranslations(shuffleArray(uniquePairs.map(pair => pair.translation)));
             })
             .catch(error => {
                 console.error('Error fetching words:', error);
